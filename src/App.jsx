@@ -1,25 +1,21 @@
-import { useRef } from "react";
+import { useState, useEffect } from "react";
 
 const App = () => {
-  return (
-    <div>
-      <h1 className="text-3xl underline font-bold">Hello</h1>
-      <InputFocus />
-    </div>
-  );
-};
+  const [value, setValue] = useState(0);
 
-const InputFocus = () => {
-  const inputRef = useRef(null);
+  useEffect(() => console.log("Hello"), [value]);
 
-  const handleFocus = () => {
-    inputRef.current.focus();
+  const handleCount = () => {
+    setValue((prev) => prev + 1);
   };
 
   return (
     <div>
-      <input ref={inputRef} type="text" placeholder="Type here..." />
-      <button onClick={handleFocus}>Focus Input</button>
+      <h1 className="text-3xl underline font-bold">Hello</h1>
+      <h2 className="indent-8">{value}</h2>
+      <button className="border-2 p-2" onClick={handleCount}>
+        Increment
+      </button>
     </div>
   );
 };
