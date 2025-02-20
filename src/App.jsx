@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const App = () => {
   return (
     <div className="text-3xl font-bold underline">
@@ -20,6 +22,10 @@ const Password = ({ isValid }) => {
       <div>{isValid ? <Valid /> : <InValid />}</div>
     </>
   );
+};
+
+Password.propTypes = {
+  isValid: PropTypes.bool,
 };
 
 export default App;
