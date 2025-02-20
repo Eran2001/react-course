@@ -13,8 +13,8 @@ const App = () => {
 const User = ({ username, password }) => {
   return (
     <>
-      <h1>{username}</h1>
-      <h2>{password}</h2>
+      <h1 className="text-2xl bg-amber-400 w-42">{username}</h1>
+      <h2 className="text-2xl bg-amber-300 w-42">{password}</h2>
     </>
   );
 };
