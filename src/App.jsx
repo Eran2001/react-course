@@ -4,7 +4,7 @@ const App = () => {
   return (
     <div>
       <User>
-        <h1>Hello New User</h1>
+        <h1 className="border-2 border-amber-900">Hello New User</h1>
       </User>
       <User>
         <h1>Hello Old User</h1>
