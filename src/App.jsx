@@ -9,7 +9,16 @@ const App = () => {
           <li>{item}</li>
         </ul>
       ))}
+      <User name="Eran" />
     </div>
+  );
+};
+
+const User = ({ name }) => {
+  return (
+    <>
+      <h1>{name}</h1>
+    </>
   );
 };
 
