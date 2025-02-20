@@ -13,7 +13,7 @@ const App = () => {
   );
 };
 
-const User = ({ username, password }) => {
+const User = ({ username, password, children }) => {
   return (
     <>
       <h1 className="text-2xl bg-amber-400 w-42">{username}</h1>
