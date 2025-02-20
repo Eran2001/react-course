@@ -1,8 +1,12 @@
 import PropTypes from "prop-types";
 
 const App = () => {
+  const onCopy = () => {
+    alert("Don't copy me");
+  };
+
   return (
-    <div className="text-3xl font-bold underline">
+    <div className="text-3xl font-bold underline" onCopy={onCopy}>
       <Password isValid={false} />
     </div>
   );
