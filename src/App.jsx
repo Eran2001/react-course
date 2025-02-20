@@ -1,18 +1,24 @@
 import { useState } from "react";
 
 const App = () => {
-  const [count, setCount] = useState(0);
+  const [movie, setMovie] = useState({
+    title: "Titanic",
+    ratings: 10,
+  });
 
   return (
     <div>
       <h1 className="text-3xl underline font-bold">Hello</h1>
-      <h2>Number = {count}</h2>
-      <button
-        onClick={() => setCount((prev) => prev + 1)}
-        className="border-2 border-amber-900 bg-amber-400"
+      <h2 className="text-2xl">{movie.title}</h2>
+      <h5
+        className={`text-2xl ${
+          movie.ratings === 8
+            ? "text-red-500 bg-amber-500"
+            : "text-yellow-500 bg-red-500"
+        }`}
       >
-        Change Count
-      </button>
+        {movie.ratings}
+      </h5>
     </div>
   );
 };
