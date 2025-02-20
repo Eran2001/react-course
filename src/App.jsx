@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const App = () => {
   const myList = [1, 2, 3, 4, 5];
 
@@ -20,6 +22,10 @@ const User = ({ name }) => {
       <h1>{name}</h1>
     </>
   );
+};
+
+User.propTypes = {
+  name: PropTypes.string,
 };
 
 export default App;
