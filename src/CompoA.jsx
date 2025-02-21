@@ -11,6 +11,7 @@ const CompoA = () => {
         className="border-2 border-amber-950 cursor-pointer"
         onClick={() => {
           setUser("John Doe");
+          console.log("Name has been changed!");
         }}
       >
         Change
