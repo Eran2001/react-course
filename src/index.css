@@ -1,4 +1,6 @@
 body {
-  background-color: teal;
+  color: teal;
+  text-shadow: 5px 5px 20px black;
+  background-color: rgb(216, 12, 128);
   font-family: "Poppins", sans-serif;
 }/*# sourceMappingURL=index.css.map */
