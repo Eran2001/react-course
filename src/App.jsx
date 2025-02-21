@@ -16,9 +16,9 @@ function Timer() {
     setTimeout(() => {
       setCount((count) => count + 1);
     }, 1000);
-  }, []);
+  }, [count]);
 
-  return <h1>I've rendered {count} times!</h1>;
+  return <h1>I&apos;ve rendered {count} times!</h1>;
 }
 
 export default App;
