@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const App = () => {
   return (
     <div>
@@ -11,9 +13,13 @@ const Card = ({ username }) => {
   return (
     <div>
       <h2>Card</h2>
-      <User />
+      {username}
     </div>
   );
+};
+
+Card.propTypes = {
+  username: PropTypes.string,
 };
 
 const User = ({ username }) => {
@@ -23,6 +29,10 @@ const User = ({ username }) => {
       {username}
     </div>
   );
+};
+
+User.propTypes = {
+  username: PropTypes.string,
 };
 
 export default App;
