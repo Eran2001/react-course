@@ -1,24 +1,28 @@
-import { useState, useEffect } from "react";
-
 const App = () => {
   return (
     <div>
       <h1 className="text-3xl underline font-bold">Hello</h1>
-      <Timer />
+      <Card username="Eran" />
     </div>
   );
 };
 
-function Timer() {
-  const [count, setCount] = useState(0);
+const Card = ({ username }) => {
+  return (
+    <div>
+      <h2>Card</h2>
+      <User />
+    </div>
+  );
+};
 
-  useEffect(() => {
-    setTimeout(() => {
-      setCount((count) => count + 1);
-    }, 1000);
-  }, [count]);
-
-  return <h1>I&apos;ve rendered {count} times!</h1>;
-}
+const User = ({ username }) => {
+  return (
+    <div>
+      <h3>User</h3>
+      {username}
+    </div>
+  );
+};
 
 export default App;
