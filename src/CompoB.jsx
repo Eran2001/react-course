@@ -1,6 +1,6 @@
 const CompoB = () => {
   return (
-    <div>
+    <div className="bg-amber-400">
       <h1>Compo B</h1>
     </div>
   );

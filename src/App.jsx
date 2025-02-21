@@ -1,10 +1,9 @@
-import { createContext, useState } from "react";
+import { useState } from "react";
+import { userContext } from "./userContext";
 import CompoA from "./CompoA";
 import CompoB from "./CompoB";
 
 const App = () => {
-  const userContext = createContext();
-
   const [user, setUser] = useState("Eran Hasareli");
 
   return (
