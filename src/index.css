@@ -14,3 +14,22 @@ input[type="text"] {
   width: 80%;
   height: 20px;
 }
+
+.table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}
+
+table,
+tr,
+th,
+td {
+  border: 1px solid #000;
+}
+
+th,
+td {
+  padding: 1rem 4rem;
+}
