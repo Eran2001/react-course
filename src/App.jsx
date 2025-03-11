@@ -1,16 +1,18 @@
-import { useState } from "react";
-import User from "./User";
+import { useRef } from "react";
 
-const App = () => {
-  const [count, setCount] = useState(0);
+const FocusInput = () => {
+  const inputRef = useRef(null);
+
+  const handleClick = () => {
+    inputRef.current.focus(); // Focus the input
+  };
 
   return (
     <div>
-      <h1>Hello</h1>
-      <User isLoggedIn={false} />
-      <button onClick={() => setCount((prev) => prev + 1)}>{count}</button>
+      <input ref={inputRef} type="text" />
+      <button onClick={handleClick}>Focus</button>
     </div>
   );
 };
 
-export default App;
+export default FocusInput;
