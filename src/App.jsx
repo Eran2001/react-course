@@ -1,35 +1,39 @@
-import useCounterStore from "./store";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from "@tanstack/react-query";
 
-const FocusInput = () => {
-  const { count, increment, decrement, reset } = useCounterStore();
+const queryClient = new QueryClient();
+
+export default function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Example />
+    </QueryClientProvider>
+  );
+}
+
+function Example() {
+  const { isPending, error, data } = useQuery({
+    queryKey: ["repoData"],
+    queryFn: () =>
+      fetch("https://api.github.com/repos/TanStack/query").then((res) =>
+        res.json()
+      ),
+  });
+
+  if (isPending) return "Loading...";
+
+  if (error) return "An error has occurred: " + error.message;
 
   return (
-    <div className="flex flex-col items-center justify-center bg-gray-900 h-screen text-white">
-      <h1 className="text-3xl font-bold underline center m-4">
-        Counter: {count}
-      </h1>
-      <div className="flex flex-row gap-3">
-        <button
-          onClick={increment}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          +
-        </button>
-        <button
-          onClick={decrement}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          -
-        </button>
-        <button
-          onClick={reset}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          Reset
-        </button>
-      </div>
+    <div>
+      <h1>{data.name}</h1>
+      <p>{data.description}</p>
+      <strong>👀 {data.subscribers_count}</strong>{" "}
+      <strong>✨ {data.stargazers_count}</strong>{" "}
+      <strong>🍴 {data.forks_count}</strong>
     </div>
   );
-};
-
-export default FocusInput;
+}
