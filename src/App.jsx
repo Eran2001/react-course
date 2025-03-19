@@ -1,6 +1,5 @@
-import { createContext, useState } from "react";
-
-export const UserContext = createContext();
+import { useState } from "react";
+import { UserContext } from "./context.js";
 
 const Example = () => {
   const [user, setUser] = useState("John Doe");
