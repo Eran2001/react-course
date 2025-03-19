@@ -18,10 +18,16 @@ const Example = () => {
   return (
     <div className="h-screen bg-gray-900 text-white p-4">
       <h1>Count: {state.count}</h1>
-      <button className="border border-green-400 p-1 m-2 cursor-pointer">
+      <button
+        onClick={() => dispatch({ type: "increment" })}
+        className="border border-green-400 p-1 m-2 cursor-pointer"
+      >
         Increment
       </button>
-      <button className="border border-green-400 p-1 m-2 cursor-pointer">
+      <button
+        onClick={() => dispatch({ type: "decrement" })}
+        className="border border-green-400 p-1 m-2 cursor-pointer"
+      >
         Decrement
       </button>
     </div>
