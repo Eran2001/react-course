@@ -8,8 +8,8 @@ function reducer(state, action) {
       return { count: state.count + 1 };
     case "decrement":
       return { count: state.count - 1 };
-    default:
-      return state;
+    case "reset":
+      return initialState;
   }
 }
 
@@ -29,6 +29,12 @@ const Example = () => {
         className="border border-green-400 p-1 m-2 cursor-pointer"
       >
         Decrement
+      </button>
+      <button
+        onClick={() => dispatch({ type: "reset" })}
+        className="border border-green-400 p-1 m-2 cursor-pointer"
+      >
+        Reset
       </button>
     </div>
   );
