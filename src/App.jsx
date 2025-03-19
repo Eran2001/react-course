@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useReducer } from "react";
+
+const initialState = { count: 0 };
 
 const Example = () => {
-  const [load, setLoading] = useState(true);
-
   return (
     <div className="h-screen bg-gray-900 text-white">
       <h1>{load ? <p>loading...</p> : <p>Nothing...</p>}</h1>
