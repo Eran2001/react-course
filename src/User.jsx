@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { UserContext } from "./context.js";
 
 const User = () => {
-  const name = useContext(UserContext);
+  const user = useContext(UserContext);
 
   return (
     <div>
-      <h1>{name}</h1>
+      <h1>{user}</h1>
     </div>
   );
 };
