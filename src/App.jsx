@@ -14,9 +14,16 @@ function reducer(state, action) {
 }
 
 const Example = () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <div className="h-screen bg-gray-900 text-white p-4">
-      <h1>Count: </h1>
+      <h1>Count: {state.count}</h1>
+      <button className="border border-green-400 p-1 m-2 cursor-pointer">
+        Increment
+      </button>
+      <button className="border border-green-400 p-1 m-2 cursor-pointer">
+        Decrement
+      </button>
     </div>
   );
 };
