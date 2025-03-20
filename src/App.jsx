@@ -1,9 +1,7 @@
-import CompoA from "./CompoA";
-
 const App = () => {
   return (
-    <div className="h-screen bg-gray-900 text-white p-4">
-      <CompoA />
+    <div className="flex flex-col items-center bg-gray-900 text-white h-screen text-3xl">
+      <h1>Hello</h1>
     </div>
   );
 };
