@@ -1,16 +1,30 @@
-import { useState } from "react";
+import { useState, createContext, useEffect, useRef } from "react";
 import CompoC from "./CompoC";
-import { createContext } from "react";
 
 export const NameContext = createContext();
 
 const CompoA = () => {
   const [name] = useState("Era");
+  const colorRef = useRef(null);
+
+  useEffect(() => {
+    const keyPress = (event) => console.log(`Key pressed: ${event.key}`);
+    window.addEventListener("keypress", keyPress);
+
+    return () => {
+      window.removeEventListener("keydown", keyPress);
+    };
+  }, []);
+
+  const handleColor = () => (colorRef.current.style.color = "yellow");
 
   return (
     <NameContext.Provider value={name}>
       <div className="box">
-        <h1 className="text-4xl mb-2">Hello</h1>
+        <h1 ref={colorRef} className="text-4xl mb-2">
+          Hello
+        </h1>
+        <button onClick={handleColor}>Click</button>
         <CompoC />
       </div>
     </NameContext.Provider>
