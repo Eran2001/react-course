@@ -1,7 +1,7 @@
 const CompoC = () => {
   return (
-    <div>
-      <h1 className="box">CompoC</h1>
+    <div className="box">
+      <h1>CompoC</h1>
     </div>
   );
 };

@@ -2,8 +2,8 @@ import CompoB from "./CompoB";
 
 const CompoA = () => {
   return (
-    <div>
-      <h1 className="box">CompoA</h1>
+    <div className="box">
+      <h1>CompoA</h1>
       <CompoB />
     </div>
   );
