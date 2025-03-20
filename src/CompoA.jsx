@@ -1,21 +1,10 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 
 const CompoA = () => {
   const divRef = useRef(null);
-  const [isClicked, setIsClicked] = useState(false);
+  const [isClicked, setIsClicked] = useState(true);
 
-  useEffect(() => {
-    const keyPress = (event) => console.log(`Key pressed: ${event.key}`);
-    window.addEventListener("keypress", keyPress);
-
-    if (divRef.current) {
-      divRef.current.style.transition = "all 0.7s ease";
-    }
-
-    return () => {
-      window.removeEventListener("keydown", keyPress);
-    };
-  }, []);
+  if (divRef.current) divRef.current.style.transition = "all 0.5s";
 
   const handleClick = () => {
     if (divRef.current) {
@@ -32,7 +21,7 @@ const CompoA = () => {
     <div className="flex flex-col items-center gap-4">
       <div
         ref={divRef}
-        className="p-4 text-white bg-[#ff0f4f] rounded-lg cursor-pointer"
+        className="p-4 bg-[#ff0f4f] text-#fff rounded-lg cursor-pointer"
         onClick={handleClick}
       >
         Click me to change!
