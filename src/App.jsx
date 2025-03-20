@@ -1,24 +1,21 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const App = () => {
-  const [width, setWidth] = useState(window.innerWidth);
-  const [height, setHeight] = useState(window.innerHeight);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    console.log("Component rendered");
-  }, []);
+    console.log("Mount");
 
-  function handleResize() {
-    setWidth(window.innerWidth);
-    setHeight(window.innerHeight);
-  }
+    return () => {
+      console.log("Unmount");
+    };
+  }, [count]);
 
   return (
     <div className="flex flex-col items-center bg-gray-900 text-white h-screen text-3xl">
       <h1>Hello</h1>
-      <p>Width: {width}px</p>
-      <p>Height: {height}px</p>
+      <p>{count}</p>
+      <button onClick={() => setCount((count) => count + 1)}>Increment</button>
     </div>
   );
 };
