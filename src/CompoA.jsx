@@ -1,14 +1,17 @@
-import { useState } from "react";
+import { useState, createContext } from "react";
 import CompoB from "./CompoB";
 
+export const NameContext = createContext();
+
 const CompoA = () => {
-  const [name, setName] = useState("Era");
+  const [name] = useState("Era");
+
   return (
-    <div className="box">
+    <NameContext.Provider value={name} className="box">
       <h1>CompoA</h1>
       <h2>{name}</h2>
-      <CompoB name={name} />
-    </div>
+      <CompoB />
+    </NameContext.Provider>
   );
 };
 

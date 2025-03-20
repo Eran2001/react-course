@@ -1,10 +1,10 @@
 import CompoC from "./CompoC";
 
-const CompoB = ({ name }) => {
+const CompoB = () => {
   return (
     <div className="box">
       <h1>CompoB</h1>
-      <CompoC name={name} />
+      <CompoC />
     </div>
   );
 };

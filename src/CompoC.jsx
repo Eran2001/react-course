@@ -1,4 +1,8 @@
-const CompoC = ({ name }) => {
+import { useContext } from "react";
+import { NameContext } from "./CompoA";
+
+const CompoC = () => {
+  const name = useContext(NameContext);
   return (
     <div className="box">
       <h1>CompoC</h1>
