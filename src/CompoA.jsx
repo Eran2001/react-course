@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 
 const CompoA = () => {
   const divRef = useRef(null);
-  const [isClicked, setIsClicked] = useState(true);
+  const [isClicked, setIsClicked] = useState(false);
 
   if (divRef.current) divRef.current.style.transition = "all 0.5s";
 
