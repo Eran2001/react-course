@@ -8,9 +8,11 @@ const CompoA = () => {
 
   return (
     <NameContext.Provider value={name} className="box">
-      <h1>CompoA</h1>
-      <h2>{name}</h2>
-      <CompoB />
+      <div className="box">
+        <h1>CompoA</h1>
+        <h2>{name}</h2>
+        <CompoB />
+      </div>
     </NameContext.Provider>
   );
 };
