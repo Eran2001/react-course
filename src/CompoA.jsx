@@ -11,6 +11,8 @@ const CompoA = () => {
     const keyPress = (event) => console.log(`Key pressed: ${event.key}`);
     window.addEventListener("keypress", keyPress);
 
+    if (colorRef.current) colorRef.current.style.color = "red";
+
     return () => {
       window.removeEventListener("keydown", keyPress);
     };
