@@ -1,35 +1,43 @@
-import { useState, createContext, useEffect, useRef } from "react";
-import CompoC from "./CompoC";
-
-export const NameContext = createContext();
+import { useState, useEffect, useRef } from "react";
 
 const CompoA = () => {
-  const [name] = useState("Era");
-  const colorRef = useRef(null);
+  const divRef = useRef(null);
+  const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
     const keyPress = (event) => console.log(`Key pressed: ${event.key}`);
     window.addEventListener("keypress", keyPress);
 
-    if (colorRef.current) colorRef.current.style.color = "red";
+    if (divRef.current) {
+      divRef.current.style.transition = "all 0.7s ease";
+    }
 
     return () => {
       window.removeEventListener("keydown", keyPress);
     };
   }, []);
 
-  const handleColor = () => (colorRef.current.style.color = "yellow");
+  const handleClick = () => {
+    if (divRef.current) {
+      divRef.current.style.backgroundColor = isClicked ? "#ff0f4f" : "#fdc500";
+      divRef.current.style.color = isClicked ? "white" : "black";
+      divRef.current.textContent = isClicked
+        ? "Click me to change!"
+        : "Changed!";
+      setIsClicked(!isClicked);
+    }
+  };
 
   return (
-    <NameContext.Provider value={name}>
-      <div className="box">
-        <h1 ref={colorRef} className="text-4xl mb-2">
-          Hello
-        </h1>
-        <button onClick={handleColor}>Click</button>
-        <CompoC />
+    <div className="flex flex-col items-center gap-4">
+      <div
+        ref={divRef}
+        className="p-4 text-white bg-[#ff0f4f] rounded-lg cursor-pointer"
+        onClick={handleClick}
+      >
+        Click me to change!
       </div>
-    </NameContext.Provider>
+    </div>
   );
 };
 
