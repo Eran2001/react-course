@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { NameContext } from "./CompoA";
+import { NameContext } from "./App";
 
 const CompoC = () => {
   const name = useContext(NameContext);
