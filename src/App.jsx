@@ -8,7 +8,6 @@ const App = () => {
       <h1>Hello {name}</h1>
       <form onSubmit={(e) => e.preventDefault()}>
         <label htmlFor="name">Name:</label>
-
         <input
           type="text"
           value={name}
