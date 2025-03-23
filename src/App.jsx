@@ -7,7 +7,13 @@ const App = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://jsonplaceholder.typicode.com/posts/"
+          "https://jsonplaceholder.typicode.com/posts/",
+          {
+            method: "GET",
+            headers: {
+              "Content-type": "application/json",
+            },
+          }
         );
 
         if (!response.ok) throw new Error("Error");
