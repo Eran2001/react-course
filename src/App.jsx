@@ -1,8 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 const App = () => {
-  const [fetchData, setFetchData] = useState("");
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -18,7 +16,8 @@ const App = () => {
         console.log(error);
       }
     };
-  });
+    fetchData();
+  }, []);
 
   return (
     <div>
