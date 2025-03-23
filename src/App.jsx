@@ -1,42 +1,43 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-const App = () => {
+const FetchExample = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "https://jsonplaceholder.typicode.com/posts/",
-          {
-            method: "GET",
-            headers: {
-              "Content-type": "application/json",
-            },
-          }
-        );
-
-        if (!response.ok) throw new Error("Error");
-
-        const json = await response.json();
-        setData(json);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
+    fetch("https://jsonplaceholder.typicode.om/posts") // Example API
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setData(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error.message);
+        setLoading(false);
+      });
   }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div>
-      <h1>Hello</h1>
+      <h2>Posts</h2>
       <ul>
-        {data.map((post) => (
-          <li key={post.id}>{post.title}</li>
+        {data.slice(0, 10).map((post) => (
+          <li key={post.id}>
+            <strong>{post.title}</strong>: {post.body}
+          </li>
         ))}
       </ul>
     </div>
   );
 };
 
-export default App;
+export default FetchExample;
