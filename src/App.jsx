@@ -37,6 +37,7 @@ const FetchExample = () => {
         ))}
       </ul>
       <h1>Hello</h1>
+      <p>World</p>
     </div>
   );
 };
