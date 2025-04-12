@@ -1,7 +1,6 @@
 /*# sourceMappingURL=index.css.map */
 @import "tailwindcss";
 
-.box {
-  border: 3px solid #fff;
-  padding: 25px;
+body {
+  background-color: grey;
 }
