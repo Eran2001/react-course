@@ -33,7 +33,7 @@ const App = () => {
       </div>
 
       {isModalOpen && (
-        <div className="absolute inset-0 z-50">
+        <div className="absolute inset-0 z-[-1]">
           <Example onClose={() => setIsModalOpen(false)} />
         </div>
       )}
