@@ -2,7 +2,7 @@
 
 ## Work with forms
 
-### First install these
+#### First install these
 
 ```bash
 npm install react-hook-form
@@ -10,7 +10,7 @@ npm install yup
 npm i @hookform/resolvers
 ```
 
-### Usage
+#### Usage
 
 ```bash
 import React from "react";
