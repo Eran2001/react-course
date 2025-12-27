@@ -1,45 +1,46 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-
-const FormSchema = yup
-  .object({
-    email: yup.string().email("Invalid email").required("Email is required"),
-    password: yup.string().required("Password is required"),
-  })
-  .required();
+import React, { useState } from "react";
 
 const App = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(FormSchema),
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(JSON.stringify(formData, null, 2));
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input id="email" type="text" {...register("email")} />
-        {errors.email && <p>{errors.email.message}</p>}
-      </div>
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="name">Name</label>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        value={formData.name}
+        onChange={handleChange}
+      />
 
-      <div>
-        <label htmlFor="password">Password</label>
-        <input id="password" type="password" {...register("password")} />
-        {errors.password && <p>{errors.password.message}</p>}
-      </div>
+      <label htmlFor="email">Email</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        value={formData.email}
+        onChange={handleChange}
+      />
 
-      <div>
-        <button type="submit">Submit</button>
-      </div>
+      <button type="submit">Submit</button>
     </form>
   );
 };
