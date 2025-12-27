@@ -1,16 +1,83 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Work with forms
 
-Currently, two official plugins are available:
+### First install these
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+npm install react-hook-form
+npm install yup
+npm i @hookform/resolvers
+```
 
-## React Compiler
+### Usage
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+import React from "react";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
-## Expanding the ESLint configuration
+const FormSchema = yup
+  .object({
+    email: yup.string().email("Invalid email").required("Email is required"),
+    password: yup.string().required("Password is required"),
+  })
+  .required();
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+const App = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(FormSchema),
+  });
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+  return (
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="space-y-4 flex flex-col justify-center items-center min-h-[50vh]"
+    >
+      <div className="flex flex-col justify-center gap-1">
+        <label htmlFor="email">Email</label>
+        <input
+          id="email"
+          type="text"
+          {...register("email")}
+          className={`py-2 border rounded text-sm ${
+            errors.name ? "border-red-500" : "border-slate-500"
+          }`}
+        />
+        {errors.email && <p style={{ color: "red" }}>{errors.email.message}</p>}
+      </div>
+
+      <div className="flex flex-col justify-center gap-1">
+        <label htmlFor="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          {...register("password")}
+          className={`py-2 border rounded text-sm ${
+            errors.password ? "border-red-500" : "border-slate-500"
+          }`}
+        />
+        {errors.password && (
+          <p style={{ color: "red" }}>{errors.password.message}</p>
+        )}
+      </div>
+
+      <div className="flex justify-start items-center">
+        <button type="submit" className="cursor-pointer border">
+          Submit
+        </button>
+      </div>
+    </form>
+  );
+};
+
+export default App;
+```

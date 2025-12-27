@@ -1,29 +1,66 @@
-import React, { useState } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
-const defaultUsers = Array(10)
-  .fill(0)
-  .map((_, i) => ({
-    id: i,
-    userName: `User ${i}`,
-  }));
+const FormSchema = yup
+  .object({
+    email: yup.string().email("Invalid email").required("Email is required"),
+    password: yup.string().required("Password is required"),
+  })
+  .required();
 
 const App = () => {
-  const [users, setUsers] = useState(defaultUsers);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(FormSchema),
+  });
 
-  const handleRemove = (id) => {
-    const newUsers = users.filter((user) => user.id !== id);
-    setUsers(newUsers);
+  const onSubmit = (data) => {
+    console.log(data);
   };
   return (
-    <div>
-      {users.map((user) => {
-        return (
-          <button key={user.id} onClick={() => handleRemove(user.id)}>
-            {user.userName}
-          </button>
-        );
-      })}
-    </div>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="space-y-4 flex flex-col justify-center items-center min-h-[50vh]"
+    >
+      <div className="flex flex-col justify-center gap-1">
+        <label htmlFor="email">Email</label>
+        <input
+          id="email"
+          type="text"
+          {...register("email")}
+          className={`py-2 border rounded text-sm ${
+            errors.name ? "border-red-500" : "border-slate-500"
+          }`}
+        />
+        {errors.email && <p style={{ color: "red" }}>{errors.email.message}</p>}
+      </div>
+
+      <div className="flex flex-col justify-center gap-1">
+        <label htmlFor="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          {...register("password")}
+          className={`py-2 border rounded text-sm ${
+            errors.password ? "border-red-500" : "border-slate-500"
+          }`}
+        />
+        {errors.password && (
+          <p style={{ color: "red" }}>{errors.password.message}</p>
+        )}
+      </div>
+
+      <div className="flex justify-start items-center">
+        <button type="submit" className="cursor-pointer border">
+          Submit
+        </button>
+      </div>
+    </form>
   );
 };
 
