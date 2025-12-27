@@ -2,7 +2,7 @@
 
 ## Importing Compos
 
-### if the file name is Compo.jsx we should -> import MyCompo from "./Compo No matter function name is.
+#### if the file name is Compo.jsx we should -> import MyCompo from "./Compo No matter function name is.
 
 ## Work with forms with React Controlled way
 
