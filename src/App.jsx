@@ -2,8 +2,8 @@ import React from "react";
 
 const App = () => {
   return (
-    <div>
-      <h1>App</h1>
+    <div className="bg-slate-800 min-h-screen">
+      <h1 className="text-white">App</h1>
     </div>
   );
 };
