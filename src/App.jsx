@@ -22,6 +22,7 @@ const App = () => {
   const onSubmit = (data) => {
     console.log(data);
   };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>

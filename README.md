@@ -29,7 +29,7 @@ const App = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }, // this will show error msg
   } = useForm({
     resolver: yupResolver(FormSchema),
   });
@@ -37,41 +37,35 @@ const App = () => {
   const onSubmit = (data) => {
     console.log(data);
   };
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-4 flex flex-col justify-center items-center min-h-[50vh]"
     >
-      <div className="flex flex-col justify-center gap-1">
+      <div>
         <label htmlFor="email">Email</label>
         <input
           id="email"
           type="text"
           {...register("email")}
-          className={`py-2 border rounded text-sm ${
-            errors.name ? "border-red-500" : "border-slate-500"
-          }`}
         />
-        {errors.email && <p style={{ color: "red" }}>{errors.email.message}</p>}
+        {errors.email && <p>{errors.email.message}</p>}
       </div>
 
-      <div className="flex flex-col justify-center gap-1">
+      <div>
         <label htmlFor="password">Password</label>
         <input
           id="password"
           type="password"
           {...register("password")}
-          className={`py-2 border rounded text-sm ${
-            errors.password ? "border-red-500" : "border-slate-500"
-          }`}
         />
         {errors.password && (
-          <p style={{ color: "red" }}>{errors.password.message}</p>
+          <p>{errors.password.message}</p>
         )}
       </div>
 
-      <div className="flex justify-start items-center">
-        <button type="submit" className="cursor-pointer border">
+      <div>
+        <button>
           Submit
         </button>
       </div>
